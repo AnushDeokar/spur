@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+.navbar_main{
+    position: fixed;
+    top: 0px;
+    height: 65px;
+    width: 100%;
+    color: white;
+    font-size: larger;
+    z-index: 50;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gallary_name{
+    font-family: 'Prata', serif;
+    margin: auto 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.nav_span{
+    font-family: 'Prata', serif;
+    margin: auto 10px;
+}
+.nav_span_1{
+    width: 100%;
+}
+.nav_mobileview{
+    display: none;
+}
+.nav_dropdown{
+    position: fixed;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    flex-direction: column;
+    top: 65px;
+    right: 0;
+    background-color: white;
+    height: 150px;
+    width: 200px;
+    justify-content: space-evenly;
+    column-gap: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.auth_template{
+    background-color: #efefef;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.error_msg{
+    color: red;
+}
+.auth_template h1{
+    font-family:  'Prata', serif;
+    font-size: 50px;
+    padding-top: 5%;
 }
 
-.App-link {
-  color: #61dafb;
+.auth_template h2{
+    font-family:  'Courier New', Courier, monospace;
+    font-size: 40px;
+}
+.auth_btn{
+    background-color: #efefef;
+    color: #252930;
+    height: 40px;
+    width: 200px;
+    margin-top: 20px;
+
+}
+.auth_input{
+    width: 320px;
+    margin: 10px auto;
+    height: 40px;
+    padding-left: 5px;
+}
+.auth_template_card{
+    background-color: #252930;
+    border-radius: 30px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 0 30px;
+    width: 400px;
+    padding-bottom: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+@media screen and (max-width:650px) {
+    .nav_mobileview{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav_laptopview{
+        display: none;
+    }
 }
+

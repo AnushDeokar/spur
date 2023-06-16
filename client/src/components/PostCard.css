@@ -1,0 +1,75 @@
+
+.postcard_main{
+    display: flex;
+    background-color: #efefef;
+    width: 80%;
+    flex-direction: column;
+    border: 1px solid gray;
+    margin: 60px auto;
+    overflow: hidden;
+}
+.postcard_title{
+    background-color: white;
+    padding: 10px;
+
+}
+.postcard_title_main{
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.user_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+.avatar_img{
+    height: 40px;
+    margin-bottom: 5px;
+}
+.postcard_img{
+    width: 100%;
+}
+
+.postcard_right{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+}
+.postcard_input{
+    z-index: 1;
+    bottom: 0;
+    background-color: #efefef;
+    height: 45px;
+    margin-right: 15px;
+    width: 100%;
+}
+.postcard_actual_input{
+    background-color: #efefef;
+    height: 100%;
+    margin-left: 10px;
+    width: 80%;
+
+}
+.postcard_actual_input:focus{
+    outline: none;
+}
+.postcard_content{
+    margin-left: 10px;
+}
+.postcard_btn{
+    color: #0088fe;
+    font-weight: 500;
+    text-align: center;
+    width: 15%;
+}
+.postcard_second_sec{
+    display: grid;
+    position: relative;
+    height: 500px;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    overflow: hidden;
+}

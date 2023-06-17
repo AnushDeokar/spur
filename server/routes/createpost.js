@@ -44,4 +44,16 @@ router.post('/', authverify, upload.single('image'),  async(req, res)=>{
 }
 )
 
+router.get('/fetch', async (req, res)=>{
+    const {offset} = req.query;
+    console.log("n", offset);
+    if (offset){
+    var sql = `SELECT * FROM  (SELECT p.id as post_id, p.created_at, p.title,p.image, p.description, u.name, u.id as user_id  from posts p INNER JOIN users u on p.user_id=u.id ORDER BY p.created_at DESC) AS sorted_table LIMIT 1 OFFSET ${offset};`
+    const {rows} = await db.query(sql);
+    console.log(rows);
+    res.json({msg:["fetched"], success:true});
+    }
+})
+
+
 module.exports = router;

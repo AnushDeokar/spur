@@ -9,11 +9,61 @@
     z-index: 50;
 }
 
+.create_post_head{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    margin-top: 10px;
+}
+.createpost_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #252930;
+    width: 60%;
+    margin: auto;
+    padding: 3% 2%;
+    gap: 20px;
+}
+.createpost_label{
+    color: white;
+    align-self: left;
+    font-size: 20px;
+}
+.createpost_title{
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 20px;
+}
+.createpost_description{
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+.createpost_img{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    border: dashed 3px gray;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.createpost_submit{
+    height: 40px;
+    color: white;
+    background-color: green;
+    width: 20%;
+    margin-top: 10px;
+}
 .gallary_name{
     font-family: 'Prata', serif;
     margin: auto 0;
     padding-left: 20px;
     padding-right: 20px;
+    padding: 10px;
 }
 .nav_span{
     font-family: 'Prata', serif;
@@ -90,6 +140,9 @@
 
     .nav_laptopview{
         display: none;
+    }
+    .createpost_form{
+        width: 80%;
     }
 }
 

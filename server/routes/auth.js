@@ -32,7 +32,7 @@ router.post('/signup', async (req, res)=>{
             await db.query(sql, [name, username, hashedpassword]);
             res.json({
                 msg:"User successfully added",
-                success: true
+                success: true,
             })
         }
     }catch(err){
@@ -46,7 +46,7 @@ router.post('/login', async (req, res)=>{
     try{
         const {username, password} = req.body;
         console.log(username, password);
-        var checkuser = 'SELECT username, name FROM users WHERE username= $1';
+        var checkuser = 'SELECT * FROM users WHERE username= $1';
         const Userexists = await db.query(checkuser, [username]);
         if (Userexists.rows.length===0){
             res.json({
@@ -62,7 +62,7 @@ router.post('/login', async (req, res)=>{
                     // Send JWT
                     let payload = {id:Userexists.rows[0].id};
                     const token = jwt.sign(payload, process.env.JWT_SECRET);
-                    return res.status(200).cookie('token', token, { httpOnly: true }).json({success:true, msg:"User Logged in", username:Userexists.rows[0].username, name:Userexists.rows[0].name})
+                    return res.status(200).cookie('token', token, { httpOnly: true }).json({success:true, msg:"User Logged in", username:Userexists.rows[0].username, name:Userexists.rows[0].name, token: token})
                 } else {
                     return res.json({success: false, msg: 'Passwords do not match'});
                 }

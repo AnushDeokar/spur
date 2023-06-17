@@ -36,6 +36,9 @@ function Login() {
                     setError({iserror:true, msg:res.data.msg});
                 }else{
                     localStorage.setItem("isAuthenticated", true);
+                    localStorage.setItem("name", res.data.name);
+                    localStorage.setItem("username", res.data.username);
+                    localStorage.setItem("token", res.data.token);
                     navigate("/");
                 }
                 console.log(res);

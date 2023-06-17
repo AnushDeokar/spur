@@ -5,6 +5,7 @@ const app = express();
 const dotenv = require('dotenv');
 const authrouter = require('./routes/auth');
 const authverify = require('./middleware/authverify');
+const postrouter = require('./routes/createpost');
 var cookies = require("cookie-parser");
 
 // middlewares
@@ -14,6 +15,7 @@ app.use( cors({
 }));
 app.use(express.json());
 app.use('/auth', authrouter);
+app.use('/createpost', postrouter);
 app.use(cookies());
 dotenv.config();
 
@@ -28,7 +30,7 @@ try{
 
 //routes
 app.get('/', authverify, (req, res)=>{
-    console.log(req.id);
+    console.log(req.user_id);
     res.send("Authenticated User");
 })
 

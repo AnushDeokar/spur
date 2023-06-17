@@ -26,7 +26,9 @@ function Signup() {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        if (details.username.length<=5){
+        if (details.username===""||details.name===""||details.password===""||details.confirm_password){
+            setError({iserror:true, msg:"Please fill all the fields"});
+        }else if (details.username.length<=5){
             console.log(details.username)
             setError({iserror:true, msg:"Username should be atleast 5 characters long"});
         }else if(details.password.length<=5){
@@ -39,7 +41,7 @@ function Signup() {
                 if (!res.data.success){
                     setError({iserror:true, msg:res.data.msg});
                 }else{
-                    navigate("/");
+                    navigate("/login");
                 }
                 console.log(res);
             }catch (err){
@@ -56,7 +58,7 @@ function Signup() {
         <div className='w-1/4 auth_template_card'>
             <h2 style={{color:"white"}}>Signup</h2>
             <div className='flex-column'>
-            <input type="text"placeholder='Set any username' name="name" onChange={handleChange} value={details.name} className='auth_input'/>
+            <input type="text"placeholder='Name' name="name" onChange={handleChange} value={details.name} className='auth_input'/>
             <input type="text"placeholder='Set any username' name="username" onChange={handleChange} value={details.username} className='auth_input'/>
             <input type="password" placeholder='Password' name="password" onChange={handleChange} value={details.password} className='auth_input'/>
             <input type="password" placeholder='Confirm Password' name="confirm_password" onChange={handleChange} value={details.confirm_password} className='auth_input'/>

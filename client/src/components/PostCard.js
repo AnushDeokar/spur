@@ -42,7 +42,8 @@ function PostCard({data}) {
             setComments(oldcomments=> [{
                 comment: mycomment,
                 username: localStorage.getItem("username"), 
-                created_at: Date.now()
+                created_at: Date.now(), 
+                user_id: localStorage.getItem("user_id"), 
             }, ...oldcomments]);
             setMyComment("");
         }
@@ -63,6 +64,7 @@ function PostCard({data}) {
 
 
     useEffect(()=>{
+        console.log(data);
         const fetchComments = async ()=>{
             const res = await axios.get(`${base_url}/post/fetch_comment/${data.post_id}`);
             
@@ -91,7 +93,7 @@ function PostCard({data}) {
                                 alt=""/>
                                 {data.name}
                             </span>
-                            <span className="postcard_title_main">{data.title}</span>
+                            <span className="postcard_title_main">{data.post_id}</span>
                             <span>
                                 {formattedDate}
                             </span>
@@ -108,14 +110,23 @@ function PostCard({data}) {
                                 <br/>
                                 {comments.length===0?<p style={{color:"gray"}}>No Comments Yet</p>:<p style={{fontWeight:"700"}}>Comments</p>}
                                 {comments.map((val, i)=>{
-                                    return <div key={i}><p><span style={{fontWeight:"500"}}>{val.username }</span> &nbsp; {val.comment} {()=>{changedateformat(val.created_at)}}</p></div>
+
+                                    return (
+                                    <div key={i} className="comment_box">
+                                        <div style={{display:"flex"}}>
+                                            <img src={`https://api.multiavatar.com/${val.user_id}.svg?apikey=${multiavatarapikey}`} className="comment_box_avatar" alt=""/>
+                                            <span style={{fontWeight:"500"}}>{val.username }</span>
+                                        </div>
+                                        <span style={{marginLeft:"10px"}}> {val.comment} </span>
+                                        
+                                    </div>)
                                 })}
                             </div>
                      <div className="postcard_input" >
                         {isAuth?
                         <input className="postcard_actual_input" name="comment" onChange={handleChange} value={mycomment} placeholder="Add a comment ..."/>
                         :<input className="postcard_actual_input" disabled placeholder="Login to Add a comment ..."/>}
-                        <button className="postcard_btn" onClick={handleSubmit}>POST</button>
+                        <button className="postcard_btn" onClick={handleSubmit}>POST </button>
                     </div>
 
                     </div>

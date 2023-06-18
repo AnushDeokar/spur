@@ -13,10 +13,9 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(10000);
+  var called = 0;
   const loadpost = async (initial) =>{
     setIsLoading(true);
-    console.log("initial", initial);
-    console.log("compare", count, items.length);
     try{
       if (items.length<count){
         const res = await axios.get(`${base_url}/post/fetch?offset=${page}&length=${initial}`);
@@ -25,7 +24,6 @@ function Home() {
           setPage(prevPage => prevPage + 1);
         }
         if (initial){
-            // count = res.data.count;
             setCount(Number(res.data.count));
             console.log("count", count);
         }
@@ -38,7 +36,11 @@ function Home() {
   }
 
   useEffect(()=>{
-      loadpost(true);
+    window.scrollTo(0, 0);
+      if (called===0){
+        loadpost(true);
+        called = called+1;
+      }
   }, [])
 
   const handelInfiniteScroll = async () => {
@@ -75,12 +77,12 @@ function Home() {
         </div>
         <h1 className='head_font' style={{marginTop:"30px", fontSize:"50px"}}>Gallary</h1>
         {items.map((data, id)=><div key={id}>
-          {id!==0?<PostCard data={data} />:<span ></span>}
+          <PostCard data={data} />
           {isLoading? <div>Loading....</div>:<></>}
           </div>
         )}
         <div style={{height:"40px", color:"white", width:"100%", backgroundColor:"#252930", textAlign:"center", bottom:"0"}}>
-          Developed By Anush Deokar
+          Developed By Anush Deokar | 2023
         </div>
         
     </Layout>

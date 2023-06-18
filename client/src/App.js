@@ -20,6 +20,9 @@ const RestrictedRoutes = () => {
   return <>{!isAuth ? <Outlet /> : <Navigate to='/' />}</>
 }
 
+
+
+
 function App() {
   
 

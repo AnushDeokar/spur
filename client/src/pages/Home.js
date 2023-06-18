@@ -8,18 +8,28 @@ import axios from 'axios';
 
 const base_url = process.env.REACT_APP_BACKEND_URL;
 function Home() {
-  // var postfetched = 0;
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
-
-  const loadpost = async () =>{
+  const [count, setCount] = useState(10000);
+  const loadpost = async (initial) =>{
     setIsLoading(true);
+    console.log("initial", initial);
+    console.log("compare", count, items.length);
     try{
-      const res = await axios.get(`${base_url}/createpost/fetch?offset=${page}`);
-      setItems(prevItems => [...prevItems, ...res.data.msg]);
-      setPage(prevPage => prevPage + 1);
+      if (items.length<count){
+        const res = await axios.get(`${base_url}/post/fetch?offset=${page}&length=${initial}`);
+        if (res.data.success){
+          setItems(prevItems => [...prevItems, ...res.data.posts]);
+          setPage(prevPage => prevPage + 1);
+        }
+        if (initial){
+            // count = res.data.count;
+            setCount(Number(res.data.count));
+            console.log("count", count);
+        }
+      }
     }catch (err){
       console.log(err);
     }finally{
@@ -28,7 +38,7 @@ function Home() {
   }
 
   useEffect(()=>{
-      loadpost();
+      loadpost(true);
   }, [])
 
   const handelInfiniteScroll = async () => {
@@ -36,10 +46,9 @@ function Home() {
       if (
         window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight
-      ) {
-        
-        loadpost();
-        console.log("Hit");
+        && items.length<count
+        ) {  
+        loadpost(false);
       }
     } catch (error) {
       console.log(error);
@@ -49,8 +58,10 @@ function Home() {
 
   
   useEffect(() => {
-    window.addEventListener('scroll', handelInfiniteScroll);
-    return () => window.removeEventListener('scroll', handelInfiniteScroll);
+    if (items.length<count){
+      window.addEventListener('scroll', handelInfiniteScroll);
+      return () => window.removeEventListener('scroll', handelInfiniteScroll);
+    }
   }, [isLoading]);
 
   return ( 
@@ -63,12 +74,14 @@ function Home() {
           <button className='show_btn' style={{cursor:"pointer"}} onClick={()=>{navigate("/createpost")}}>Show your Art</button>
         </div>
         <h1 className='head_font' style={{marginTop:"30px", fontSize:"50px"}}>Gallary</h1>
-        {items.map((val, id)=><>
-          {console.log(val)}
-          <PostCard key={id}/>
-          {isLoading? <div>Loading.....</div>:<></>}</>
+        {items.map((data, id)=><div key={id}>
+          {id!==0?<PostCard data={data} />:<span ></span>}
+          {isLoading? <div>Loading....</div>:<></>}
+          </div>
         )}
-
+        <div style={{height:"40px", color:"white", width:"100%", backgroundColor:"#252930", textAlign:"center", bottom:"0"}}>
+          Developed By Anush Deokar
+        </div>
         
     </Layout>
   )

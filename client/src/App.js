@@ -10,7 +10,6 @@ import {
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import CreatePost from './pages/CreatePost';
-import { CookiesProvider } from "react-cookie";
 const PrivateRoutes = () => {
   const isAuth = localStorage.getItem("isAuthenticated")===null||localStorage.getItem("isAuthenticated")===false?false:true;
   return <>{isAuth ? <Outlet /> : <Navigate to='/login' />}</>
@@ -25,7 +24,6 @@ function App() {
   
 
   return (
-    <CookiesProvider>
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />} />
@@ -40,7 +38,6 @@ function App() {
       </Route>
     </Routes>
   </BrowserRouter>
-  </CookiesProvider>
   );
 }
 

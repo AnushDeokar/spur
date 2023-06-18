@@ -21,15 +21,13 @@ function Signup() {
     const handleChange = (e)=>{
         e.preventDefault();
         setDetails({...details, [e.target.name]:e.target.value});
-        console.log(details);
     }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        if (details.username===""||details.name===""||details.password===""||details.confirm_password){
+        if (details.username===""||details.name===""||details.password===""||details.confirm_password===""){
             setError({iserror:true, msg:"Please fill all the fields"});
         }else if (details.username.length<=5){
-            console.log(details.username)
             setError({iserror:true, msg:"Username should be atleast 5 characters long"});
         }else if(details.password.length<=5){
             setError({iserror:true, msg:"Password should be atleast 5 characters long"});
@@ -43,7 +41,6 @@ function Signup() {
                 }else{
                     navigate("/login");
                 }
-                console.log(res);
             }catch (err){
                 console.log(err);
             }

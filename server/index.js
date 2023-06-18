@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const authrouter = require('./routes/auth');
 const authverify = require('./middleware/authverify');
 const postrouter = require('./routes/createpost');
+const path = require('path')
 var cookies = require("cookie-parser");
 
 // middlewares
@@ -15,8 +16,9 @@ app.use( cors({
 }));
 app.use(express.json());
 app.use('/auth', authrouter);
-app.use('/createpost', postrouter);
+app.use('/post', postrouter);
 app.use(cookies());
+app.use('/public', express.static(path.join(__dirname, 'public')))
 dotenv.config();
 
 

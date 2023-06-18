@@ -30,7 +30,7 @@ function CreatePost() {
           'token': localStorage.getItem("token")
         }}
 
-        const res = await axios.post(`${base_url}/createpost`, formdata, config);
+        const res = await axios.post(`${base_url}/post/upload`, formdata, config);
         if (res.data.success){    
             navigate("/")
         }

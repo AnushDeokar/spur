@@ -24,14 +24,12 @@ function Login() {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         if (details.username.length<=5){
-            console.log(details.username)
             setError({iserror:true, msg:"Username should be atleast 5 characters long"});
         }else if(details.password.length<=5){
             setError({iserror:true, msg:"Password should be atleast 5 characters long"});
         }else{
             try{
                 const res = await axios.post(`${back_url}/auth/login`,  {username: details.username, password: details.password}, { withCredentials: true })
-                console.log("login res", res);
                 if (!res.data.success){
                     setError({iserror:true, msg:res.data.msg});
                 }else{
@@ -41,7 +39,6 @@ function Login() {
                     localStorage.setItem("token", res.data.token);
                     navigate("/");
                 }
-                console.log(res);
             }catch (err){
                 console.log(err);
             }

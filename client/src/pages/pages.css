@@ -12,6 +12,7 @@
     color: white;
     padding: 10px;
     border-radius: 30px;
+    border: 2px solid #252930;
     margin-top: 15px;
 }
 .show_btn:hover{

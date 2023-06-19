@@ -10,10 +10,7 @@ const path = require('path')
 var cookies = require("cookie-parser");
 
 // middlewares
-app.use(cors({
-    credentials: true,
-    origin: "https://spur-challenge.onrender.com/",
-}));
+app.use(cors());
 app.use(express.json());
 app.use('/auth', authrouter);
 app.use('/post', postrouter);

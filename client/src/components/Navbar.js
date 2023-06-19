@@ -30,7 +30,7 @@ function Navbar() {
     }, []);
 
     const handlelogout = async()=>{
-        await axios.get(`${base_url}/auth/logout`, { withCredentials: true });
+        await axios.get(`${base_url}/auth/logout`);
         setIsloggedin(false);
         localStorage.clear();
         navigate("/");

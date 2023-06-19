@@ -29,7 +29,7 @@ function Login() {
             setError({iserror:true, msg:"Password should be atleast 5 characters long"});
         }else{
             try{
-                const res = await axios.post(`${back_url}/auth/login`,  {username: details.username, password: details.password}, { withCredentials: true })
+                const res = await axios.post(`${back_url}/auth/login`,  {username: details.username, password: details.password})
                 if (!res.data.success){
                     setError({iserror:true, msg:res.data.msg});
                 }else{

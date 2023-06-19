@@ -78,7 +78,7 @@ function Home() {
         <h1 className='head_font' style={{marginTop:"30px", fontSize:"50px"}}>Gallary</h1>
         {items.map((data, id)=><div key={id}>
           <PostCard data={data} />
-          {isLoading? <div>Loading....</div>:<></>}
+          {isLoading? <div className='text-center w-full'>Loading....</div>:<></>}
           </div>
         )}
         <div style={{height:"40px", color:"white", width:"100%", backgroundColor:"#252930", textAlign:"center", bottom:"0"}}>

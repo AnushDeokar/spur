@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "./PostCard.css";
 import axios from 'axios';
-import moment from 'moment';
 
 
 
@@ -9,7 +8,6 @@ const base_url = process.env.REACT_APP_BACKEND_URL;
 const multiavatarapikey = process.env.REACT_APP_MULTIAVATAR_API_KEY;
 function PostCard({data}) {
     
-    const avatars = ["https://api.multiavatar.com/stefan.svg", "https://api.multiavatar.com/kathrin.svg", "https://api.multiavatar.com/Starcrasher.svg"]
 
     const dateObj = new Date(data.created_at);
 
@@ -38,7 +36,7 @@ function PostCard({data}) {
                 'token': localStorage.getItem("token")
             }}
       
-            const res = await axios.post(`${base_url}/post/comment`, postdata, config);
+            await axios.post(`${base_url}/post/comment`, postdata, config);
             setComments(oldcomments=> [{
                 comment: mycomment,
                 username: localStorage.getItem("username"), 
@@ -49,51 +47,30 @@ function PostCard({data}) {
         }
     }
 
-    const changedateformat = (date)=>{
-        const dateObj = new Date(date);
-
-  // Format the date to "17th June 2023"
-        const formattedDate = dateObj.toLocaleDateString("en-GB", {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
-        return formattedDate;
-    }
-
 
 
     useEffect(()=>{
-        console.log(data);
         const fetchComments = async ()=>{
             const res = await axios.get(`${base_url}/post/fetch_comment/${data.post_id}`);
             
             setComments(res.data.allcomments);
         }   
         fetchComments();
-    }, [])
-    const imageRef = useRef(null);
+    }, [data.post_id])
 
-    useEffect(() => {
-      if (imageRef.current) {
-        const imageHeight = imageRef.current.clientHeight;
-        console.log('Image height:', imageHeight);
-      }
-    }, []);
-  
 
     return (
             <div className="postcard_main">
                 <div className="postcard_title">
                      <div className="user_section">
                             <span className="flex items-center gap-px">
-                                <img className="avatar_img" ref={imageRef} 
+                                <img className="avatar_img"
                                 // src={avatars[(data.user_id)%3]}
                                 src={`https://api.multiavatar.com/${data.user_id}.svg?apikey=${multiavatarapikey}`} 
                                 alt=""/>
                                 {data.name}
                             </span>
-                            <span className="postcard_title_main">{data.post_id}</span>
+                            <span className="postcard_title_main">{data.title}</span>
                             <span>
                                 {formattedDate}
                             </span>

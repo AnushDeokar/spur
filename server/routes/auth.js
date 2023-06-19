@@ -62,7 +62,7 @@ router.post('/login', async (req, res)=>{
                     // Send JWT
                     let payload = {id:Userexists.rows[0].id};
                     const token = jwt.sign(payload, process.env.JWT_SECRET);
-                    return res.status(200).cookie('token', token, { httpOnly: true }).json({success:true, msg:"User Logged in", username:Userexists.rows[0].username, name:Userexists.rows[0].name, token: token})
+                    return res.status(200).cookie('token', token, { httpOnly: true }).json({success:true, msg:"User Logged in", user_id:Userexists.rows[0].id, username:Userexists.rows[0].username, name:Userexists.rows[0].name, token: token})
                 } else {
                     return res.json({success: false, msg: 'Passwords do not match'});
                 }

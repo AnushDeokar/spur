@@ -37,6 +37,7 @@ function Login() {
                     localStorage.setItem("name", res.data.name);
                     localStorage.setItem("username", res.data.username);
                     localStorage.setItem("token", res.data.token);
+                    localStorage.setItem("user_id", res.data.user_id);
                     navigate("/");
                 }
             }catch (err){

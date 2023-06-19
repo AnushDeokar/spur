@@ -39,6 +39,7 @@ function Home() {
     window.scrollTo(0, 0);
       if (called===0){
         loadpost(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         called = called+1;
       }
   }, [])
@@ -60,8 +61,11 @@ function Home() {
 
   
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     if (items.length<count){
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       window.addEventListener('scroll', handelInfiniteScroll);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       return () => window.removeEventListener('scroll', handelInfiniteScroll);
     }
   }, [isLoading]);

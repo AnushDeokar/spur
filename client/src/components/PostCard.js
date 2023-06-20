@@ -6,12 +6,9 @@ import axios from 'axios';
 
 const base_url = process.env.REACT_APP_BACKEND_URL;
 const multiavatarapikey = process.env.REACT_APP_MULTIAVATAR_API_KEY;
-function PostCard({data}) {
-    
 
+function PostCard({data}) {    
     const dateObj = new Date(data.created_at);
-
-  // Format the date to "17th June 2023"
     const formattedDate = dateObj.toLocaleDateString("en-GB", {
         day: 'numeric',
         month: 'long',
@@ -65,7 +62,6 @@ function PostCard({data}) {
                      <div className="user_section">
                             <span className="flex items-center gap-px">
                                 <img className="avatar_img"
-                                // src={avatars[(data.user_id)%3]}
                                 src={`https://api.multiavatar.com/${data.user_id}.svg?apikey=${multiavatarapikey}`} 
                                 alt=""/>
                                 {data.name}

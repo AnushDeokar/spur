@@ -58,7 +58,6 @@ function CreatePost() {
                 <AiOutlineUpload style={{margin:"auto"}} size={40}/> <input type='file' onChange={(event)=>{setPostImg(event.target.files[0]);}} accept="image/*"/>
               </div>
             </div>
-
             <button className='createpost_submit' onClick={handleSubmit}>Post</button>
         </div>
       </div>

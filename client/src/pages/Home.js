@@ -26,7 +26,6 @@ function Home() {
         }
         if (initial){
             setCount(Number(res.data.count));
-            console.log("count", count);
         }
       }
     }catch (err){
@@ -35,15 +34,11 @@ function Home() {
       setIsLoading(false);
     }
   }
-
   
   const renderData = (data) => {
-    //console.log(data);
     if (renderIds.includes(data.post_id)) {
       return null;
     }
-    // console.log("r", renderIds);
-
     renderIds.push(data.post_id);
 
     // Render the data
@@ -74,8 +69,6 @@ function Home() {
       console.log(error);
     }
   };
-
-
   
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,9 +81,7 @@ function Home() {
   }, [isLoading]);
 
   return ( 
-    
     <Layout>
-      
         <HomeTopSection/>
         <div className="head_font" style={{backgroundColor:"#efefef", padding:"150px 40px", color:"#252930"}}>
           <p>Welcome to our Virtual Art Gallery! Step into a captivating realm where artists like you can showcase their remarkable artwork. Share your masterpieces with a global audience, while exploring a diverse array of creativity from talented individuals worldwide. Immerse yourself in this vibrant community, where inspiration knows no bounds. Let art transcend boundaries!</p>
@@ -98,14 +89,12 @@ function Home() {
         </div>
         <h1 className='head_font' style={{marginTop:"30px", fontSize:"50px"}}>Gallary</h1>
         {items.map((data)=>
-          // <PostCard data={data}key={data.post_id}/>
           renderData(data)
         )}
         {isLoading? <div className='text-center w-full'>Loading....</div>:<></>}
         <div style={{height:"40px", color:"white", width:"100%", backgroundColor:"#252930", textAlign:"center", bottom:"0"}}>
           Developed By Anush Deokar | 2023
         </div>
-        
     </Layout>
   )
 }

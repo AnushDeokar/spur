@@ -30,7 +30,6 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />} />
-
       <Route element={<PrivateRoutes />}>
         <Route path='/createpost' element={<CreatePost />} />
       </Route>

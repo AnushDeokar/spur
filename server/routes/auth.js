@@ -45,7 +45,6 @@ router.post('/signup', async (req, res)=>{
 router.post('/login', async (req, res)=>{
     try{
         const {username, password} = req.body;
-        console.log(username, password);
         var checkuser = 'SELECT * FROM users WHERE username= $1';
         const Userexists = await db.query(checkuser, [username]);
         if (Userexists.rows.length===0){

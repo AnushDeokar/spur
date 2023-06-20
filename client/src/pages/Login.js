@@ -59,7 +59,7 @@ function Login() {
             <button className='auth_btn' onClick={handleSubmit}>Login</button>
             </div>
         </div>
-        <p>Already have an account? <span className='text-sky-700 cursor-pointer' onClick={()=>{navigate('/signup')}}>Register</span></p>
+        <p>Don't have an account? <span className='text-sky-700 cursor-pointer' onClick={()=>{navigate('/signup')}}>Register</span></p>
     </div>
   )
 }

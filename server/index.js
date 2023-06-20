@@ -8,6 +8,7 @@ const authverify = require('./middleware/authverify');
 const postrouter = require('./routes/createpost');
 const path = require('path')
 var cookies = require("cookie-parser");
+const fs = require('fs');
 
 // middlewares
 app.use(cors());
@@ -33,7 +34,14 @@ app.get('/', authverify, (req, res)=>{
     res.send("Authenticated User");
 })
 
-
+app.get('/img_content', (req, res)=>{
+    const testFolder = './public/posts';
+    const temp = [];
+    fs.readdirSync(testFolder).forEach(file => {
+        temp.push(file);
+    });
+    res.json({files:temp});
+})
 //server listening
 app.listen(5000, ()=>{
     console.log("Server is listening on port 5000")

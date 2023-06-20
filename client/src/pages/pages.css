@@ -54,10 +54,10 @@
 0% { opacity: 0.2; }
 100% { opacity: 1; }
 }
-@media screen and (max-width:800px) {
+@media screen and (max-width:900px) {
     .main_home_title{
-        top: 250px;
-        font-size: 50px;
+        top: 200px;
+        font-size: 40px;
     }
     .quote{
         font-size: 20px;
@@ -65,8 +65,8 @@
 }
 @media screen and (max-width:750px) {
     .main_home_title{
-        top: 200px;
-        font-size: 50px;
+        top: 150px;
+        font-size: 40px;
     }
     .quote{
         font-size: 20px;
@@ -76,7 +76,7 @@
 @media screen and (max-width:550px) {
     .main_home_title{
         top: 150px;
-        font-size: 30px;
+        font-size: 20px;
     }
     .quote{
         font-size: 10px;
@@ -86,7 +86,7 @@
 @media screen and (max-width:400px){
     .main_home_title{
         top: 100px;
-        font-size: 30px;
+        font-size: 20px;
     }
     .quote{
         font-size: 10px;

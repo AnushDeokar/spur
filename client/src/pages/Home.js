@@ -10,9 +10,10 @@ const base_url = process.env.REACT_APP_BACKEND_URL;
 function Home() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(10000);
+  var renderIds = [];
   var called = 0;
   const loadpost = async (initial) =>{
     setIsLoading(true);
@@ -34,6 +35,22 @@ function Home() {
       setIsLoading(false);
     }
   }
+
+  
+  const renderData = (data) => {
+    //console.log(data);
+    if (renderIds.includes(data.post_id)) {
+      return null;
+    }
+    // console.log("r", renderIds);
+
+    renderIds.push(data.post_id);
+
+    // Render the data
+    return (
+        <PostCard data={data} key={data.post_id}/>
+    );
+  };
 
   useEffect(()=>{
     window.scrollTo(0, 0);
@@ -80,11 +97,11 @@ function Home() {
           <button className='show_btn' style={{cursor:"pointer"}} onClick={()=>{navigate("/createpost")}}>Show your Art</button>
         </div>
         <h1 className='head_font' style={{marginTop:"30px", fontSize:"50px"}}>Gallary</h1>
-        {items.map((data, id)=><div key={id}>
-          <PostCard data={data} />
-          {isLoading? <div className='text-center w-full'>Loading....</div>:<></>}
-          </div>
+        {items.map((data)=>
+          // <PostCard data={data}key={data.post_id}/>
+          renderData(data)
         )}
+        {isLoading? <div className='text-center w-full'>Loading....</div>:<></>}
         <div style={{height:"40px", color:"white", width:"100%", backgroundColor:"#252930", textAlign:"center", bottom:"0"}}>
           Developed By Anush Deokar | 2023
         </div>

@@ -1,5 +1,7 @@
 server/node_modules
 server/.env
+server/public/posts/*.jpg
+server/public/posts/*.png
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

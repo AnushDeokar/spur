@@ -3,7 +3,6 @@ import "./PostCard.css";
 import axios from 'axios';
 
 
-
 const base_url = process.env.REACT_APP_BACKEND_URL;
 const multiavatarapikey = process.env.REACT_APP_MULTIAVATAR_API_KEY;
 
@@ -45,7 +44,6 @@ function PostCard({data}) {
     }
 
 
-
     useEffect(()=>{
         const fetchComments = async ()=>{
             const res = await axios.get(`${base_url}/post/fetch_comment/${data.post_id}`);
@@ -74,7 +72,21 @@ function PostCard({data}) {
                     
                 </div>
                 <div className="postcard_second_sec">
-                    <img  src={`${base_url}/public/posts/${data.image}`} className="postcard_img" alt=""/>
+                    <img  src={`${base_url}/public/posts/${data.image}`} 
+                    onError={(e) => {
+                        if (data.post_id%5===0){
+                            e.target.src ='./demo1.jpg';
+                        }else if(data.post_id%5===1){
+                            e.target.src ='./demo2.jpg';
+                        }else if(data.post_id%5===1){
+                            e.target.src ='./demo3.jpg';
+                        }else if(data.post_id%5===1){
+                            e.target.src ='./demo4.jpg';
+                        }else{
+                            e.target.src ='./demo5.jpg';
+                        } 
+                    }}
+                    className="postcard_img" alt=""/>
                     <div className="postcard_right">
                         <div className="postcard_content">
                             <span style={{fontWeight:"700"}}>Description: </span>
